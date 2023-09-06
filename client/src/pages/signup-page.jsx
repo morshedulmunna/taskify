@@ -10,8 +10,8 @@ export default function Signup() {
                     {/* logo area */} {/* logo area */}
                     <div className="flex justify-center items-center flex-col">
                         <div className="flex">
-                            <img width={40} src={logo} alt="logo" />
-                            <span className="text-3xl text-pink-500 ml-2 font-bold">
+                            <img width={50} src={logo} alt="logo" />
+                            <span className="text-4xl text-pink-500 ml-2 font-extrabold">
                                 Taskify
                             </span>
                         </div>
@@ -26,7 +26,7 @@ export default function Signup() {
                                 id="name"
                                 className="border py-2 px-2 rounded"
                                 type="text"
-                                placeholder="Your Name"
+                                placeholder="your Name"
                             />
 
                             <input

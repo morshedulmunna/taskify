@@ -10,8 +10,8 @@ export default function Login() {
                     {/* logo area */}
                     <div className="flex justify-center items-center flex-col">
                         <div className="flex">
-                            <img width={40} src={logo} alt="logo" />
-                            <span className="text-3xl text-pink-500 ml-2 font-bold">
+                            <img width={50} src={logo} alt="logo" />
+                            <span className="text-4xl text-pink-500 ml-2 font-extrabold">
                                 Taskify
                             </span>
                         </div>
