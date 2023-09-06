@@ -26,3 +26,6 @@ dist-ssr
 
 *.lock
 *-lock.json
+
+.env
+.local.env
