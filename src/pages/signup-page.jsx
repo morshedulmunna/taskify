@@ -1,8 +1,63 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import {createCollectionDB} from "../../lib/indexDB";
 import logo from "../assets/Logo.svg";
 
 export default function Signup() {
+    const [user, setUser] = useState({
+        name: "",
+        email: "",
+        password: "",
+        groupId: [],
+    });
+
+    console.log(user);
+
+    const handleInputChange = (e) => {
+        const {name, value} = e.target;
+
+        setUser({
+            ...user,
+            [name]: value,
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const request = createCollectionDB(); // Don't await here
+
+        request.onsuccess = (event) => {
+            const db = event.target.result; // Get the database instance
+            const userToAdd = {...user}; // Create a copy of the user object
+
+            const transaction = db.transaction("user_data", "readwrite");
+            const store = transaction.objectStore("user_data");
+
+            const addRequest = store.put(userToAdd);
+
+            addRequest.onsuccess = (event) => {
+                console.log(
+                    "User added to the store with key: " + event.target.result
+                );
+            };
+
+            addRequest.onerror = (event) => {
+                console.error("Error adding user: " + event.target.error);
+            };
+
+            setUser({
+                name: "",
+                email: "",
+                password: "",
+                groupId: [],
+            });
+        };
+
+        request.onerror = (event) => {
+            console.error("Error opening database: " + event.target.error);
+        };
+    };
+
     return (
         <div>
             <div className="h-[100vh] flex justify-center items-center">
@@ -20,27 +75,37 @@ export default function Signup() {
                     {/* Form */}
                     <div>
                         <h2 className="font-bold text-2xl mt-6">Register</h2>
-                        <form className="flex flex-col mt-2 gap-4" action="">
+                        <form
+                            onSubmit={handleSubmit}
+                            className="flex flex-col mt-2 gap-4"
+                            action=""
+                        >
                             <input
-                                name="name"
                                 id="name"
                                 className="border py-2 px-2 rounded"
                                 type="text"
+                                name="name"
+                                value={user.name}
+                                onChange={handleInputChange}
                                 placeholder="your Name"
                             />
 
                             <input
-                                name="email"
                                 id="email"
                                 className="border py-2 px-2 rounded"
                                 type="text"
+                                name="email"
+                                value={user.email}
+                                onChange={handleInputChange}
                                 placeholder="example@gmial.com"
                             />
 
                             <input
-                                name="password"
                                 className="border py-2 px-2 rounded"
                                 type="password"
+                                name="password"
+                                value={user.password}
+                                onChange={handleInputChange}
                                 placeholder="password"
                             />
 

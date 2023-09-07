@@ -1,6 +1,4 @@
-### Taskify is a Task management Web Base Software. Which one you can create a task in your team collaboration group?
-
-#### Web View UI UX: 
+Taskify is a Task management Web Base Software. Which one you can create a task in your team collaboration group?
 
 - Dashboard View
   ![screencapture-taskify-delta-vercel-app-collaboration-2023-09-07-15_21_23](https://github.com/morshedulmunna/taskify/assets/44342051/a5ac3ef1-bc5c-4de0-ab8f-75bda391eb93)
