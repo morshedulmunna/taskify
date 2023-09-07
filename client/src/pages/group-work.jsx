@@ -1,11 +1,12 @@
 import React from "react";
 import CreateTask from "../components/CreateTask";
 import PageTittle from "../components/PageTittle";
+import Task from "../components/Task";
 
 export default function GroupWork() {
     return (
         <>
-            <div className=" px-4 py-4 mb-6 rounded text-white bg-dark400">
+            <div className=" px-4 py-4 mb-6 rounded text-white bg-dark400 ">
                 <PageTittle />
             </div>
             <div className="m-4 ">
@@ -17,8 +18,14 @@ export default function GroupWork() {
                             New Task
                         </h5>
 
-                        <div className="min-h-[76vh] m-4 overflow-y-auto">
-                            <p>Task here</p>
+                        <div className="h-[75vh] m-4 overflow-y-auto space-y-4">
+                            <Task />
+
+                            <Task />
+                            <Task />
+                            <Task />
+                            <Task />
+                            <Task />
                         </div>
                     </div>
 
@@ -27,8 +34,12 @@ export default function GroupWork() {
                             Processing
                         </h5>
 
-                        <div className="min-h-[76vh] m-4 overflow-y-auto">
-                            <p>Task here</p>
+                        <div className="h-[75vh] m-4 overflow-y-auto space-y-4">
+                            <Task />
+
+                            <Task />
+                            <Task />
+                            <Task />
                         </div>
                     </div>
 
@@ -37,8 +48,11 @@ export default function GroupWork() {
                             Completed
                         </h5>
 
-                        <div className="min-h-[76vh] m-4 overflow-y-auto">
-                            <p>Task here</p>
+                        <div className="h-[75vh] m-4 overflow-y-auto space-y-4">
+                            <Task />
+
+                            <Task />
+                            <Task />
                         </div>
                     </div>
                 </div>
