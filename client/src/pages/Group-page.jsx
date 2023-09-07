@@ -1,5 +1,6 @@
 import {XSquare} from "lucide-react";
 import React, {useState} from "react";
+import GroupCard from "../components/GroupCard";
 import ModalState from "../components/Modal";
 
 export default function Group() {
@@ -17,7 +18,22 @@ export default function Group() {
             <div className="h-[1px] w-full bg-purple-600 mt-6"></div>
 
             <div className="mt-6">
-                <p>List of group name</p>
+                <p className="text-white text-xl font-medium">
+                    List of group name -------------------
+                </p>
+
+                <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  gap-4">
+                    <GroupCard />
+                    <GroupCard />
+                    <GroupCard />
+                    <GroupCard />
+                    <GroupCard />
+                    <GroupCard />
+                    <GroupCard />
+                    <GroupCard />
+                    <GroupCard />
+                    <GroupCard />
+                </div>
             </div>
 
             <ModalState isOpen={isOpen}>
@@ -47,14 +63,7 @@ export default function Group() {
                                 placeholder="Name"
                             />
 
-                            <select
-                                name="user-list"
-                                id="user"
-                                className="w-full py-2 bg-transparent border mt-4 rounded"
-                            >
-                                <option value="">Select team member</option>
-                                <option value="rahim">Rahim</option>
-                            </select>
+                            {/* TODO: Multi input team Member list */}
                         </div>
 
                         <button

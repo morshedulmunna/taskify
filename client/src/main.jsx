@@ -1,10 +1,12 @@
 import * as React from "react";
+import "react-datepicker/dist/react-datepicker.css";
 import * as ReactDOM from "react-dom/client";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import "./index.css";
 import DashboardPage from "./pages/dashboard-page";
 import ErrorPage from "./pages/error-page";
 import Group from "./pages/Group-page";
+import GroupWork from "./pages/group-work";
 import Login from "./pages/login-page";
 import Profile from "./pages/profile-page";
 import Signup from "./pages/signup-page";
@@ -31,6 +33,10 @@ const router = createBrowserRouter([
             {
                 path: "/profile",
                 element: <Profile />,
+            },
+            {
+                path: "/collaboration/:groupId",
+                element: <GroupWork />,
             },
         ],
         errorElement: <ErrorPage />,
