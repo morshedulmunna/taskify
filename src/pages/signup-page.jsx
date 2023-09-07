@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {createCollectionDB} from "../../lib/indexDB";
 import logo from "../assets/Logo.svg";
 
@@ -11,7 +11,7 @@ export default function Signup() {
         groupId: [],
     });
 
-    console.log(user);
+    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;
@@ -36,13 +36,13 @@ export default function Signup() {
             const addRequest = store.put(userToAdd);
 
             addRequest.onsuccess = (event) => {
-                console.log(
-                    "User added to the store with key: " + event.target.result
-                );
+                alert("Register Successful!");
+
+                navigate("/login");
             };
 
             addRequest.onerror = (event) => {
-                console.error("Error adding user: " + event.target.error);
+                alert(event.target.error);
             };
 
             setUser({
@@ -54,14 +54,14 @@ export default function Signup() {
         };
 
         request.onerror = (event) => {
-            console.error("Error opening database: " + event.target.error);
+            alert("Error opening database: " + event.target.error);
         };
     };
 
     return (
         <div>
-            <div className="h-[100vh] flex justify-center items-center">
-                <div className="shadow-sm rounded bg-Dark p-6 w-[30%]">
+            <div className="h-[100vh] flex justify-center items-center text-white">
+                <div className="shadow-sm rounded bg-Dark p-6 w-full md:w-[50%] lg:w-[24%]">
                     {/* logo area */} {/* logo area */}
                     <div className="flex justify-center items-center flex-col">
                         <div className="flex">
@@ -82,31 +82,34 @@ export default function Signup() {
                         >
                             <input
                                 id="name"
-                                className="border py-2 px-2 rounded"
+                                className="border py-2 px-2 rounded bg-transparent"
                                 type="text"
                                 name="name"
                                 value={user.name}
                                 onChange={handleInputChange}
                                 placeholder="your Name"
+                                required
                             />
 
                             <input
                                 id="email"
-                                className="border py-2 px-2 rounded"
+                                className="border py-2 px-2 rounded bg-transparent"
                                 type="text"
                                 name="email"
                                 value={user.email}
                                 onChange={handleInputChange}
                                 placeholder="example@gmial.com"
+                                required
                             />
 
                             <input
-                                className="border py-2 px-2 rounded"
+                                className="border py-2 px-2 rounded  bg-transparent"
                                 type="password"
                                 name="password"
                                 value={user.password}
                                 onChange={handleInputChange}
                                 placeholder="password"
+                                required
                             />
 
                             <button
@@ -131,6 +134,8 @@ export default function Signup() {
                     </div>
                 </div>
             </div>
+
+            {/* <Toaster /> */}
         </div>
     );
 }
