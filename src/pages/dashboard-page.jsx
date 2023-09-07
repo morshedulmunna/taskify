@@ -1,11 +1,12 @@
 import React from "react";
 import TimeCounter from "../../lib/TimeCounter";
+import PageTittle from "../components/PageTittle";
 
 export default function DashboardPage() {
     return (
         <>
             <div className=" px-4 py-4 mb-6 rounded text-white bg-dark400">
-                <p className="capitalize font-bold">Home</p>
+                <PageTittle />
             </div>
 
             <div className="text-white flex justify-center items-center h-[70vh] flex-col">
