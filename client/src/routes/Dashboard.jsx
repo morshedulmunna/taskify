@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar";
 
 export default function Dashboard() {
     return (
-        <div className="md:overflow-hidden md:h-[100vh]">
+        <div className="">
             <div className="flex ">
                 <aside className="w-72 h-full hidden lg:block bg-Dark">
                     <Sidebar />
