@@ -1,23 +1,15 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import logo from "../assets/Logo.svg";
+import Logo from "../components/Logo";
 
 export default function Login() {
     return (
         <div>
-            <div className="h-[100vh] flex justify-center items-center">
-                <div className="shadow-sm rounded border border-gray-200 p-6 w-[30%]">
+            <div className="h-[100vh]  flex justify-center items-center">
+                <div className="shadow-sm bg-Dark rounded text-white   p-6 w-[30%]">
                     {/* logo area */}
-                    <div className="flex justify-center items-center flex-col">
-                        <div className="flex">
-                            <img width={50} src={logo} alt="logo" />
-                            <span className="text-4xl text-pink-500 ml-2 font-extrabold">
-                                Taskify
-                            </span>
-                        </div>
-                        <p className="mt-4">Welcome Back to Taskify</p>
-                    </div>
-
+                    <Logo />
+                    <p className="mt-4">Welcome Back to Taskify</p>
                     {/* Form */}
                     <div>
                         <h2 className="font-bold text-2xl mt-6">Sign in</h2>

@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import "./index.css";
+import DashboardPage from "./pages/dashboard-page";
 import ErrorPage from "./pages/error-page";
 import Group from "./pages/Group-page";
 import Login from "./pages/login-page";
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
             </Protected>
         ),
         children: [
+            {
+                path: "/",
+                element: <DashboardPage />,
+            },
             {
                 path: "/collaboration",
                 element: <Group />,

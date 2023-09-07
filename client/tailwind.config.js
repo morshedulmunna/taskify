@@ -5,6 +5,8 @@ export default {
         extend: {
             colors: {
                 Dark: "#20232C",
+                dark500: "#23262D",
+                dark400: "#2A2C36",
             },
         },
     },
