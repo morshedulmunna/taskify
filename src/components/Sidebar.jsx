@@ -6,7 +6,7 @@ import Logo from "./Logo";
 export default function Sidebar() {
     const location = useLocation();
     return (
-        <div className=" h-[100vh] text-white bg-Dark">
+        <div className=" h-[50vh] lg:h-[100vh] text-white bg-Dark">
             <div className="mb-10 p-4">
                 <Logo />
             </div>

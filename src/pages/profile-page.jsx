@@ -8,9 +8,9 @@ export default function Profile() {
             <div className=" px-4 py-4 mb-6 rounded text-white bg-dark400">
                 <PageTittle />
             </div>
-            <div className="bg-dark400 flex justify-start items-center lg:m-6 w-full lg:w-[50%] space-x-4 text-white p-6 rounded m-auto  mt-4">
+            <div className="bg-dark400 flex flex-col lg:flex-row justify-start items-center lg:m-6 w-full 2xl:w-1/2 space-x-4 text-white p-6 rounded m-auto  mt-4">
                 <img
-                    className="w-[280px] border rounded h-[200px]"
+                    className="w-[280px] border rounded h-auto"
                     src={DemoProfile}
                     alt="man"
                 />
