@@ -6,7 +6,7 @@ export default function Signup() {
     return (
         <div>
             <div className="h-[100vh] flex justify-center items-center">
-                <div className="shadow-sm rounded border border-gray-200 p-6 w-[30%]">
+                <div className="shadow-sm rounded bg-Dark p-6 w-[30%]">
                     {/* logo area */} {/* logo area */}
                     <div className="flex justify-center items-center flex-col">
                         <div className="flex">
