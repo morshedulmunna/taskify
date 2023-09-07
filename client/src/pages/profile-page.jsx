@@ -1,4 +1,5 @@
 import React from "react";
+import DemoProfile from "../assets/demo.jpg";
 import PageTittle from "../components/PageTittle";
 
 export default function Profile() {
@@ -10,7 +11,7 @@ export default function Profile() {
             <div className="bg-dark400 flex justify-start items-center lg:m-6 w-full lg:w-[50%] space-x-4 text-white p-6 rounded m-auto  mt-4">
                 <img
                     className="w-[280px] border rounded h-[200px]"
-                    src=""
+                    src={DemoProfile}
                     alt="man"
                 />
 

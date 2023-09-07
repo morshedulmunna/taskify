@@ -1,4 +1,4 @@
-import {Boxes, LayoutDashboardIcon, LogOut, UserSquare} from "lucide-react";
+import {Boxes, LogOut, UserSquare} from "lucide-react";
 import React from "react";
 import {Link, useLocation} from "react-router-dom";
 import Logo from "./Logo";
@@ -41,11 +41,11 @@ export default function Sidebar() {
 }
 
 const data = [
-    {
-        level: "Dashboard",
-        icon: LayoutDashboardIcon,
-        href: "/",
-    },
+    // {
+    //     level: "Dashboard",
+    //     icon: LayoutDashboardIcon,
+    //     href: "/",
+    // },
     {
         level: "Collaboration Team",
         icon: Boxes,
