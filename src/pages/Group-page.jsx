@@ -12,12 +12,9 @@ export default function Group() {
     const [search, setSearch] = useState("");
     const [groupList, setGroupList] = useState([]);
     const [groupName, setGroupName] = useState("");
-
     const myEmail = localStorage.getItem("email");
-
     const [teamEmail, setTeamEmail] = useState([myEmail]);
-
-    console.log(teamEmail);
+    const [inputValue, setInputValue] = useState("");
 
     const groupData = {
         userEmail: myEmail,
@@ -35,6 +32,7 @@ export default function Group() {
         });
     }, [groupName, search, isOpen]);
 
+    // Handle Searching
     const handleSearch = (e) => {
         e.preventDefault();
         const res = searching(groupList, search);
@@ -42,10 +40,12 @@ export default function Group() {
         setGroupList(res);
     };
 
+    // handle Team Name or Group name set
     const handleTeamName = (event) => {
         setGroupName(event.target.value);
     };
 
+    // Handle Group Create Form
     const handleGroupCreateSubmit = (e) => {
         e.preventDefault();
 
@@ -56,12 +56,12 @@ export default function Group() {
         setGroupName("");
     };
 
-    const [inputValue, setInputValue] = useState("");
-
+    // Handle Email added Form
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
     };
 
+    // Handle Email value to set Email list means Team List
     const handleAddValue = (e) => {
         e.preventDefault();
         setTeamEmail([...teamEmail, inputValue]);
