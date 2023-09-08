@@ -5,6 +5,7 @@ export const createTask = (taskData) => {
 
     request.onsuccess = (event) => {
         const db = event.target.result; // Get the database instance
+
         const taskToAdd = {...taskData}; // Create a copy of the user object
 
         const transaction = db.transaction("tasks_data", "readwrite");

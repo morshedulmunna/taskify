@@ -7,6 +7,7 @@ import {gettingUpdateUserInfo} from "../lib/updateUserProfile";
 export default function Profile() {
     const userEmail = localStorage.getItem("email");
     const [userInfo, setUserInfo] = useState({});
+
     const {name, title, description, email, photo} = userInfo;
 
     const [profileUpdate, setProfileUpdate] = useState({
