@@ -8,7 +8,6 @@ export default function PageTittle() {
 
     const path = pathname.split("/").join("");
     const [toggle, setToggle] = useState(false);
-    console.log(toggle);
 
     return (
         <div className="relative">

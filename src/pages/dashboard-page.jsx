@@ -1,6 +1,6 @@
 import React from "react";
-import TimeCounter from "../../lib/TimeCounter";
 import PageTittle from "../components/PageTittle";
+import TimeCounter from "../lib/TimeCounter";
 
 export default function DashboardPage() {
     return (

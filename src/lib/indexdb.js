@@ -29,6 +29,12 @@ export const createCollectionDB = () => {
             userStore.createIndex("name", "name", {unique: false});
             userStore.createIndex("email", "email", {unique: true});
             userStore.createIndex("password", "password", {unique: false});
+            userStore.createIndex("title", "title", {unique: false});
+            userStore.createIndex("description", "description", {
+                unique: false,
+            });
+            userStore.createIndex("photo", "photo", {unique: false});
+
             userStore.createIndex("group", "group", {
                 unique: false,
                 multiEntry: true,

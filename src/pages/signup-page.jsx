@@ -1,13 +1,16 @@
 import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {createCollectionDB} from "../../lib/indexDB";
 import logo from "../assets/Logo.svg";
+import {createCollectionDB} from "../lib/indexdb";
 
 export default function Signup() {
     const [user, setUser] = useState({
         name: "",
         email: "",
         password: "",
+        title: "",
+        description: "",
+        photo: "",
         groupId: [],
     });
 
@@ -36,9 +39,9 @@ export default function Signup() {
             const addRequest = store.put(userToAdd);
 
             addRequest.onsuccess = (event) => {
-                alert("Register Successful!");
-
-                navigate("/login");
+                localStorage.setItem("@logeIn", true);
+                localStorage.setItem("email", user.email);
+                navigate("/");
             };
 
             addRequest.onerror = (event) => {

@@ -1,10 +1,14 @@
 import {Boxes, LayoutDashboardIcon, LogOut, UserSquare} from "lucide-react";
 import React from "react";
 import {Link, useLocation} from "react-router-dom";
+import {useUser} from "../context/userContext";
 import Logo from "./Logo";
 
 export default function Sidebar() {
     const location = useLocation();
+
+    const {logout} = useUser();
+
     return (
         <div className=" h-[50vh] lg:h-[100vh] text-white bg-Dark">
             <div className="mb-10 p-4">
@@ -31,7 +35,12 @@ export default function Sidebar() {
             {/* Settings */}
             <div className="ml-4">
                 <p className="text-sm text-gray-400">Settings</p>
-                <div className="mt-6 hover:text-purple-500 transition-all ease-linear cursor-pointer w-fit mr-6 space-x-2 ml-4 text-base flex items-center">
+                <div
+                    onClick={() => {
+                        logout();
+                    }}
+                    className="mt-6 hover:text-purple-500 transition-all ease-linear cursor-pointer w-fit mr-6 space-x-2 ml-4 text-base flex items-center"
+                >
                     <LogOut size={18} />
                     <button className="    py-2 rounded ">Log out</button>
                 </div>

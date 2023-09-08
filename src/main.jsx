@@ -2,6 +2,7 @@ import * as React from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import * as ReactDOM from "react-dom/client";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {UserContextProvider} from "./context/userContext";
 import "./index.css";
 import DashboardPage from "./pages/dashboard-page";
 import ErrorPage from "./pages/error-page";
@@ -55,6 +56,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <UserContextProvider>
+            <RouterProvider router={router} />
+        </UserContextProvider>
     </React.StrictMode>
 );

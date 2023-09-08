@@ -1,8 +1,47 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import DemoProfile from "../assets/demo.jpg";
 import PageTittle from "../components/PageTittle";
+import {getUserDataByEmail} from "../lib/GettingUserInfo";
+import {gettingUpdateUserInfo} from "../lib/updateUserProfile";
 
 export default function Profile() {
+    const userEmail = localStorage.getItem("email");
+    const [userInfo, setUserInfo] = useState({});
+    const {name, title, description, email, photo} = userInfo;
+
+    const [profileUpdate, setProfileUpdate] = useState({
+        name: "",
+        title: "",
+        description: "",
+        photo: true,
+    });
+
+    useEffect(() => {
+        getUserDataByEmail(userEmail)
+            .then((userData) => {
+                setUserInfo(userData);
+            })
+            .catch((error) => {
+                alert("Something wrong!" + error);
+            });
+    }, [userInfo]);
+
+    const handleInputChange = (e) => {
+        const {name, value} = e.target;
+
+        setProfileUpdate({
+            ...profileUpdate,
+            [name]: value,
+        });
+    };
+
+    const handleProfileUpdate = (e) => {
+        e.preventDefault();
+        gettingUpdateUserInfo(userEmail, profileUpdate);
+
+        alert("Profile Information Updated!");
+    };
+
     return (
         <>
             <div className=" px-4 py-4 mb-6 rounded text-white bg-dark400">
@@ -16,30 +55,30 @@ export default function Profile() {
                 />
 
                 <div className="w-full">
-                    <h4 className="font-extrabold text-3xl mb-1">
-                        Rajiatul Kubra
-                    </h4>
-                    <span className="text-sm mb-1">example@gmail.com</span>
+                    <h4 className="font-extrabold text-3xl mb-1">{name}</h4>
+                    <span className="text-sm mb-1"> {email} </span>
                     <p className="text-purple-500  text-sm  rounded-md italic">
-                        software developer
+                        {title === "" ? "unknown" : title}
                     </p>
 
                     <p className="text-sm mt-2">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Maiores rerum esse sapiente doloribus quisquam.
-                        Laudantium facere amet a vero animi, quis sint
-                        reiciendis deserunt modi deleniti! Quis vero tenetur
-                        aliquam doloremque, distinctio dolorem eligendi fugit
-                        voluptatem tempore numquam quos natus!
+                        {description === ""
+                            ? "No Description Yet! Please Update your Info"
+                            : description}
                     </p>
                 </div>
             </div>
             <div className="h-[1px] bg-purple-500/30 w-full"></div>
             {/* Update Profile */}
             <div className="mt-5 lg:m-6 w-full lg:w-[40%] text-white">
-                <h5 className="text-xl font-semibold">Update your Account</h5>
+                <h5 className="text-xl font-semibold xl:mx-0 mx-6">
+                    Update your Account
+                </h5>
 
-                <form action="" className="mt-6 ">
+                <form
+                    onSubmit={handleProfileUpdate}
+                    className="mt-6 mx-6 xl:mx-0"
+                >
                     <div className="mb-4">
                         <label
                             htmlFor="name"
@@ -49,6 +88,9 @@ export default function Profile() {
                         </label>
                         <input
                             type="text"
+                            name="name"
+                            value={profileUpdate.name}
+                            onChange={handleInputChange}
                             placeholder="Your name"
                             className="border py-2 px-4  w-full border-gray-500/30 focus:border-purple-500/50 bg-dark400 rounded outline-none"
                         />
@@ -63,6 +105,9 @@ export default function Profile() {
                         </label>
                         <input
                             type="text"
+                            name="title"
+                            value={profileUpdate.title}
+                            onChange={handleInputChange}
                             placeholder="software engineer"
                             className="border py-2 px-4  w-full border-gray-500/30 focus:border-purple-500/50 bg-dark400 rounded outline-none"
                         />
@@ -77,8 +122,10 @@ export default function Profile() {
                         </label>
                         <textarea
                             placeholder="Summery yourself"
-                            name="bio"
-                            id=""
+                            type="text"
+                            name="description"
+                            value={profileUpdate.description}
+                            onChange={handleInputChange}
                             cols="30"
                             rows="4"
                             className="border py-2 px-4  w-full border-gray-500/30 focus:border-purple-500/50 bg-dark400 rounded outline-none"
@@ -94,7 +141,8 @@ export default function Profile() {
                         </label>
                         <input
                             type="file"
-                            placeholder="Your name"
+                            id="photoInput"
+                            accept="image/*"
                             className="border py-2 px-4  w-full border-gray-500/30 focus:border-purple-500/50 outline-none bg-dark400 rounded"
                         />
                     </div>
@@ -103,8 +151,7 @@ export default function Profile() {
                         type="submit"
                         className="w-full py-2 bg-purple-500 font-medium rounded mt-2 hover:bg-purple-500/80 ease-linear transition-all"
                     >
-                        {" "}
-                        Update Profile{" "}
+                        Update Profile
                     </button>
                 </form>
             </div>

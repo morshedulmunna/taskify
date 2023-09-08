@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import {Navigate} from "react-router-dom";
 
 function Protected({children}) {
-    const [isSignIn, setIsSignIn] = useState(true);
+    const token = JSON.parse(localStorage.getItem("@logeIn"));
 
-    if (!isSignIn) {
+    if (!token) {
         return <Navigate to="/login" replace />;
     }
     return children;
