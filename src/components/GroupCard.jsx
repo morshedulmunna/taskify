@@ -2,50 +2,22 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 export default function GroupCard({group}) {
-    const {name} = group;
+    const {name, id} = group;
 
     return (
-        <Link to={"/collaboration/2"}>
+        <Link to={`/collaboration/${id}`}>
             <div className="w-full hover:scale-105 transition-all ease-linear cursor-pointer p-4 rounded text-white bg-dark400 ">
                 <div className="flex justify-start space-x-4 items-center">
-                    <h5 className="font-bold text-xl">{name}</h5>
-                    <span className="text-xs italic bg-purple-500/20 p-1 rounded-full text-yellow-500 px-2 ">
-                        @munna
-                    </span>
+                    <h5 className="font-bold text-xl">
+                        Group Name:
+                        <span className="text-purple-500 underline pl-3">
+                            {name}
+                        </span>{" "}
+                    </h5>
                 </div>
 
-                <p className="mt-3">- Member: 23</p>
-
-                <div className="flex flex-wrap space-x-1 gap-1 mt-4">
-                    <span className="text-xs italic bg-purple-500/20 p-1 rounded-full text-yellow-500/30 px-2 ">
-                        @munna0
-                    </span>
-
-                    <span className="text-xs italic bg-purple-500/20 p-1 rounded-full text-yellow-500/30 px-2 ">
-                        @mim
-                    </span>
-                    <span className="text-xs italic bg-purple-500/20 p-1 rounded-full text-yellow-500/30 px-2 ">
-                        @kobir1
-                    </span>
-
-                    <span className="text-xs italic bg-purple-500/20 p-1 rounded-full text-yellow-500/30 px-2 ">
-                        @ratul
-                    </span>
-
-                    <span className="text-xs italic bg-purple-500/20 p-1 rounded-full text-yellow-500/30 px-2 ">
-                        @sharmin3
-                    </span>
-
-                    <span className="text-xs italic bg-purple-500/20 p-1 rounded-full text-yellow-500/30 px-2 ">
-                        @nila
-                    </span>
-                    <span className="text-xs italic bg-purple-500/20 p-1 rounded-full text-yellow-500/30 px-2 ">
-                        @minhaz
-                    </span>
-                    <span className="text-xs italic bg-purple-500/20 p-1 rounded-full text-yellow-500/30 px-2 ">
-                        @tab2
-                    </span>
-                </div>
+                <p className="mt-3 capitalize">- Group Id: {id}</p>
+                <p className="mt-3">- Member: 0</p>
             </div>
         </Link>
     );

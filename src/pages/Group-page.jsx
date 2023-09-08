@@ -23,7 +23,7 @@ export default function Group() {
         getAllDataFromObjectStore((data) => {
             setGroupList(data);
         });
-    }, [groupName, search]);
+    }, [groupName, search, isOpen]);
 
     const handleSearch = (e) => {
         e.preventDefault();
