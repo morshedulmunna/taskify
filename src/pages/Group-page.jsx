@@ -13,15 +13,25 @@ export default function Group() {
     const [groupList, setGroupList] = useState([]);
     const [groupName, setGroupName] = useState("");
 
+    const myEmail = localStorage.getItem("email");
+
+    const [teamEmail, setTeamEmail] = useState([myEmail]);
+
+    console.log(teamEmail);
+
     const groupData = {
-        userEmail: localStorage.getItem("email"),
+        userEmail: myEmail,
         name: groupName,
-        teamList: [],
+        teamList: teamEmail,
     };
 
     useEffect(() => {
         getAllDataFromObjectStore((data) => {
-            setGroupList(data);
+            data.map((each) => {
+                if (each?.teamList.includes(myEmail)) {
+                    setGroupList(data);
+                }
+            });
         });
     }, [groupName, search, isOpen]);
 
@@ -32,14 +42,30 @@ export default function Group() {
         setGroupList(res);
     };
 
+    const handleTeamName = (event) => {
+        setGroupName(event.target.value);
+    };
+
     const handleGroupCreateSubmit = (e) => {
         e.preventDefault();
+
         createGroup(groupData);
-
-        // TODO=>Not Working
-        e.target.value = "";
-
         setIsOpen(false);
+        setTeamEmail([myEmail]);
+
+        setGroupName("");
+    };
+
+    const [inputValue, setInputValue] = useState("");
+
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+    };
+
+    const handleAddValue = (e) => {
+        e.preventDefault();
+        setTeamEmail([...teamEmail, inputValue]);
+        setInputValue("");
     };
 
     return (
@@ -125,14 +151,45 @@ export default function Group() {
                                 </label>
                                 <input
                                     name="name"
-                                    onChange={(e) =>
-                                        setGroupName(e.target.value)
-                                    }
+                                    value={groupName}
+                                    onChange={handleTeamName}
                                     id="name"
                                     className="border py-2 px-2 rounded w-full"
                                     type="text"
                                     placeholder="Name"
+                                    required
                                 />
+                            </div>
+
+                            <div>
+                                <label
+                                    className="block text-sm mb-1 mt-4"
+                                    htmlFor="name"
+                                >
+                                    Team Member Email
+                                </label>
+
+                                <form className="flex items-center" action="">
+                                    <input
+                                        type="text"
+                                        placeholder="Type team member email & press enter"
+                                        value={inputValue}
+                                        onChange={handleInputChange}
+                                        className="border py-2 px-2 rounded w-full"
+                                        required
+                                    />
+                                    <button
+                                        type="submit"
+                                        className="whitespace-nowrap bg-purple-500 py-2 px-2 rounded text-white"
+                                        onClick={(e) => handleAddValue(e)}
+                                    >
+                                        Add Email
+                                    </button>
+                                </form>
+
+                                <p className="text-red-500">
+                                    Email Added: {teamEmail.length}
+                                </p>
                             </div>
 
                             <button

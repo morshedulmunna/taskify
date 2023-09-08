@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 export default function GroupCard({group}) {
-    const {name, id} = group;
+    const {name, id, teamList} = group;
 
     return (
         <Link to={`/collaboration/${id}`}>
@@ -15,9 +15,21 @@ export default function GroupCard({group}) {
                         </span>{" "}
                     </h5>
                 </div>
+                <div className="flex justify-between items-center text-sm">
+                    <p className="mt-3 capitalize"> Group Id: {id}</p>
+                    <p className="mt-3">Member: {teamList.length}</p>
+                </div>
 
-                <p className="mt-3 capitalize">- Group Id: {id}</p>
-                <p className="mt-3">- Member: 0</p>
+                <p className="mt-4 mb-2">Member List</p>
+                <div className="flex justify-start gap-2 flex-wrap ">
+                    {teamList.map((each, i) => {
+                        return (
+                            <span className="text-xs bg-gray-500/40 px-2 py-1 rounded-full">
+                                {each?.split("@")[0]}
+                            </span>
+                        );
+                    })}
+                </div>
             </div>
         </Link>
     );
