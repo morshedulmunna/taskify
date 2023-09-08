@@ -24,11 +24,11 @@ export default function Group() {
 
     useEffect(() => {
         getAllDataFromObjectStore((data) => {
-            data.map((each) => {
-                if (each?.teamList.includes(myEmail)) {
-                    setGroupList(data);
-                }
-            });
+            const filteredData = data.filter((item) =>
+                item.teamList.includes(myEmail)
+            );
+
+            setGroupList(filteredData);
         });
     }, [groupName, search, isOpen]);
 

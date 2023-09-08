@@ -9,10 +9,9 @@ export default function GroupCard({group}) {
             <div className="w-full hover:scale-105 transition-all ease-linear cursor-pointer p-4 rounded text-white bg-dark400 ">
                 <div className="flex justify-start space-x-4 items-center">
                     <h5 className="font-bold text-xl">
-                        Group Name:
-                        <span className="text-purple-500 underline pl-3">
+                        <p className="text-purple-500 underline text-center">
                             {name}
-                        </span>{" "}
+                        </p>{" "}
                     </h5>
                 </div>
                 <div className="flex justify-between items-center text-sm">
@@ -24,7 +23,10 @@ export default function GroupCard({group}) {
                 <div className="flex justify-start gap-2 flex-wrap ">
                     {teamList.map((each, i) => {
                         return (
-                            <span className="text-xs bg-gray-500/40 px-2 py-1 rounded-full">
+                            <span
+                                key={i}
+                                className="text-xs bg-gray-500/40 px-2 py-1 rounded-full"
+                            >
                                 {each?.split("@")[0]}
                             </span>
                         );
