@@ -10,6 +10,7 @@ export default function CreateTask({isOpen, setIsOpen}) {
 
     const [taskValue, setTaskValue] = useState({
         title: "",
+        assign_to: "",
         description: "",
         status: "new task",
         due_date: formatDate(startDate),
@@ -104,6 +105,25 @@ export default function CreateTask({isOpen, setIsOpen}) {
                                 placeholder="Description"
                                 required
                             ></textarea>
+                        </div>
+
+                        <div>
+                            <label
+                                className="block text-sm mb-1 mt-4"
+                                htmlFor="name"
+                            >
+                                Task assign to
+                            </label>
+                            <input
+                                name="assign_to"
+                                id="assign_to"
+                                value={taskValue.assign_to}
+                                onChange={handleInputChange}
+                                className="border py-2 px-2 rounded w-full"
+                                type="text"
+                                placeholder="Enter team members email"
+                                required
+                            />
                         </div>
 
                         <div className="flex items-center gap-4">
