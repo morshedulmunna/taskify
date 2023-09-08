@@ -18,7 +18,7 @@ export default function DashboardPage() {
                 <PageTittle />
             </div>
 
-            <div className=" text-white mx-2 mb-6 p-4 rounded h-44">
+            <div className=" text-white mx-2 mb-6 p-4 rounded ">
                 <h1 className="text-5xl font-bold">
                     Well come to Our Taskify!
                 </h1>
