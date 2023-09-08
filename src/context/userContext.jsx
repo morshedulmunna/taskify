@@ -10,6 +10,8 @@ const UserContextProvider = ({children}) => {
         localStorage.removeItem("@logeIn");
         localStorage.removeItem("email");
 
+        localStorage.removeItem("groupId");
+
         window.location.reload();
     };
 
@@ -24,6 +26,7 @@ const UserContextProvider = ({children}) => {
                 if (userData && userData.password === userCredential.password) {
                     localStorage.setItem("@logeIn", true);
                     localStorage.setItem("email", userCredential.email);
+
                     window.location.href = "/";
                 } else {
                     alert("Something wrong!, Check Email & Password");
