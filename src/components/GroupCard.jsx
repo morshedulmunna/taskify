@@ -1,12 +1,14 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-export default function GroupCard() {
+export default function GroupCard({group}) {
+    const {name} = group;
+
     return (
         <Link to={"/collaboration/2"}>
             <div className="w-full hover:scale-105 transition-all ease-linear cursor-pointer p-4 rounded text-white bg-dark400 ">
                 <div className="flex justify-start space-x-4 items-center">
-                    <h5 className="font-bold text-xl">Team X-Coder</h5>
+                    <h5 className="font-bold text-xl">{name}</h5>
                     <span className="text-xs italic bg-purple-500/20 p-1 rounded-full text-yellow-500 px-2 ">
                         @munna
                     </span>

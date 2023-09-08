@@ -1,11 +1,46 @@
 import {Search, XSquare} from "lucide-react";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import GroupCard from "../components/GroupCard";
 import ModalState from "../components/Modal";
 import PageTittle from "../components/PageTittle";
+import {createGroup} from "../lib/createGroup";
+import {getAllDataFromObjectStore} from "../lib/gettingGroupList";
+import {searching} from "../lib/searchGroup";
 
 export default function Group() {
     const [isOpen, setIsOpen] = useState(false);
+    const [search, setSearch] = useState("");
+    const [groupList, setGroupList] = useState([]);
+    const [groupName, setGroupName] = useState("");
+
+    const groupData = {
+        userEmail: localStorage.getItem("email"),
+        name: groupName,
+        teamList: [],
+    };
+
+    useEffect(() => {
+        getAllDataFromObjectStore((data) => {
+            setGroupList(data);
+        });
+    }, [groupName, search]);
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const res = searching(groupList, search);
+        console.log(res);
+        setGroupList(res);
+    };
+
+    const handleGroupCreateSubmit = (e) => {
+        e.preventDefault();
+        createGroup(groupData);
+
+        // TODO=>Not Working
+        e.target.value = "";
+
+        setIsOpen(false);
+    };
 
     return (
         <>
@@ -29,32 +64,40 @@ export default function Group() {
                             List of group name -------------------
                         </p>
 
-                        <input
-                            className="bg-transparent border rounded-l px-2 py-[8px] w-[30%] border-gray-600 outline-none focus:border-purple-500 text-white"
-                            type="search"
-                            name="search"
-                            id="search"
-                            placeholder="Search Group Name"
-                        />
-                        <button className="bg-purple-500 text-white py-2 px-2 rounded-r flex transition-all ease-linear hover:bg-purple-500/80 justify-center items-center space-x-1">
-                            <span className="text-base font-semibold">
-                                Search
-                            </span>
-                            <Search className=" " />
-                        </button>
+                        <form
+                            onSubmit={handleSearch}
+                            className="flex items-center"
+                            action=""
+                        >
+                            <input
+                                className="bg-transparent border rounded-l px-2 py-[8px] w-[100%] border-gray-600 outline-none focus:border-purple-500 text-white"
+                                type="text"
+                                name="search"
+                                onChange={(e) => setSearch(e.target.value)}
+                                placeholder="Search Group Name"
+                            />
+                            <button
+                                type="submit"
+                                className="bg-purple-500 text-white py-2 px-2 rounded-r flex transition-all ease-linear hover:bg-purple-500/80 justify-center items-center space-x-1"
+                            >
+                                <span className="text-base font-semibold">
+                                    Search
+                                </span>
+                                <Search className=" " />
+                            </button>
+                        </form>
                     </div>
 
                     <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  gap-4">
-                        <GroupCard />
-                        <GroupCard />
-                        <GroupCard />
-                        <GroupCard />
-                        <GroupCard />
-                        <GroupCard />
-                        <GroupCard />
-                        <GroupCard />
-                        <GroupCard />
-                        <GroupCard />
+                        {groupList.length === 0 && (
+                            <p className="text-red-500 font-semibold">
+                                No Group Available
+                            </p>
+                        )}
+
+                        {groupList.map((group, index) => (
+                            <GroupCard group={group} key={index} />
+                        ))}
                     </div>
                 </div>
 
@@ -69,7 +112,10 @@ export default function Group() {
                         <h4 className="text-base font-medium">
                             - Create Collaboration Team Group
                         </h4>
-                        <form className="text-sm">
+                        <form
+                            onSubmit={handleGroupCreateSubmit}
+                            className="text-sm"
+                        >
                             <div>
                                 <label
                                     className="block text-sm mb-1 mt-4"
@@ -79,13 +125,14 @@ export default function Group() {
                                 </label>
                                 <input
                                     name="name"
+                                    onChange={(e) =>
+                                        setGroupName(e.target.value)
+                                    }
                                     id="name"
                                     className="border py-2 px-2 rounded w-full"
                                     type="text"
                                     placeholder="Name"
                                 />
-
-                                {/* TODO: Multi input team Member list */}
                             </div>
 
                             <button
