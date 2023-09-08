@@ -11,7 +11,7 @@ export default function Task({taskCard}) {
             {/* Task Assign */}
 
             <p className="text-sm mt-2 text-purple-500">
-                Assign by :{" "}
+                Assign by:
                 <span className="text-purple-300">@morshedulmunna1</span>
             </p>
 
