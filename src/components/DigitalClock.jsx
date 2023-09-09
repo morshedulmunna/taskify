@@ -14,18 +14,21 @@ const DigitalClock = () => {
     }, []);
 
     const formatTime = (date) => {
-        const hours = date.getHours().toString().padStart(2, "0");
+        let hours = date.getHours().toString().padStart(2, "0");
         const minutes = date.getMinutes().toString().padStart(2, "0");
         const seconds = date.getSeconds().toString().padStart(2, "0");
-        return `${hours} : ${minutes} : ${seconds}`;
+        const am_pm = hours >= '12' ? 'PM' : 'AM'
+        hours %= 12
+        hours >= 0 ? hours : '12'
+        return `${hours} : ${minutes} : ${seconds} ${am_pm}`;
     };
 
     return (
         <div className="flex  items-center space-x-2">
-            <Clock size={100} />
+            <Clock size={80} />
             <div>
                 <h1 className="text-3xl">Digital Clock</h1>
-                <div className="text-3xl mt-2">{formatTime(time)}</div>
+                <div className="text-2xl mt-2">{formatTime(time)}</div>
             </div>
         </div>
     );
