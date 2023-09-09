@@ -19,7 +19,7 @@ const DigitalClock = () => {
         const seconds = date.getSeconds().toString().padStart(2, "0");
         const am_pm = hours >= '12' ? 'PM' : 'AM'
         hours %= 12
-        hours >= 0 ? hours : '12'
+        hours = hours ? hours : '12'
         return `${hours} : ${minutes} : ${seconds} ${am_pm}`;
     };
 
