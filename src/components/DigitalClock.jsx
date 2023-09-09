@@ -25,10 +25,10 @@ const DigitalClock = () => {
 
     return (
         <div className="flex  items-center space-x-2">
-            <Clock size={80} />
+            <Clock size={70} />
             <div>
                 <h1 className="text-3xl">Digital Clock</h1>
-                <div className="text-2xl mt-2">{formatTime(time)}</div>
+                <div className="text-3xl mt-2">{formatTime(time)}</div>
             </div>
         </div>
     );
