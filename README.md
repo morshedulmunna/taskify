@@ -3,7 +3,7 @@
 
 [Live Webiste](https://taskify-drab.vercel.app/login)
 
-### Common Features
+### Common Features:
 
  - ##### User Authentication:
     - Implement user authentication and registration functionalities Like sign up, log in, and log out
